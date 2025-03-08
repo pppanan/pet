@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Pet-friendly Singapore</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0; /* 取消 padding 以防止影响导航栏 */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .topnav {
+            background-color: rgb(255, 255, 255);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2000; /* 确保导航栏显示在地图上 */
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影增强可见性 */
+        }
+
+        .topnav a {
+            color: #679c67;
+            text-align: center;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .topnav a:hover {
+            background-color: white;
+            color: rgb(0, 0, 0);
+        }
+
+        .topnav a.active {
+            background-color: #74a067;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* 确保地图不会覆盖导航栏 */
+        #map {
+            position: absolute;
+            top: 50px; /* 避免被导航栏遮挡 */
+            height: calc(100vh - 50px);
+            width: 100%;
+            min-height: 400px; /* 确保地图区域可见 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="topnav">
+        <a class="active" href="index.html">Home</a>
+        <a href="index-mapbox.html">Storymap</a>
+        <a href="crowdsourcing.html">Crowdsourcing</a>
+    </div>
+
+   
+    <!-- 引入配置文件 -->
+    <script src="./config.js"></script>
+    
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoicGFucGFubm4iLCJhIjoiY203eXF4ejZyMGVqejJtczY2a29lYXFtNiJ9.nJCR6CKfUZdlfFMSYaeDoA';
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/panpannn/cm7yochlk00vw01sd7ax8a9bn', // 你的自定义样式
+            center: [103.79304, 1.35969], // 初始中心位置
+            zoom: 10.5,
+            pitch: 0,
+            bearing: 0
+        });
+
+        // 添加标记
+        var marker = new mapboxgl.Marker({ color: 'red' })
+            .setLngLat([103.8198, 1.3521])
+            .addTo(map);
+    </script>
+</body>
+</html>
